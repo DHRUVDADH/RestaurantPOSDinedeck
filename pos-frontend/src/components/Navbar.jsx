@@ -12,7 +12,7 @@ const Navbar = () => {
   
 
   return (
-    <div className={`${isOpen ? `sm:w-40 w-screen` : `sm:w-40 w-40`}`}>
+    <div className={`${isOpen ? `sm:w-40 w-screen` : `sm:w-40 w-0`}`}>
       <button
         className="fixed top-6 right-4 z-50 block sm:hidden"
         onClick={() => setIsOpen(!isOpen)}
@@ -40,7 +40,7 @@ const Navbar = () => {
         >
           {[
             { name: "Dashboard", path: "/auth" },
-            { name: "Menu", path: "/desc" },
+            { name: "Menu", path: "/menu" },
             { name: "Staff", path: "/asd" },
             { name: "Inventory", path: "/dasdesc" },
             { name: "Reports", path: "/sdad" },
