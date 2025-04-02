@@ -1,14 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Auth, Home, Menu, Order, Profile } from "./pages";
-import {
-  ChangePassword,
-  Navbar,
-  NavbarHorizontal,
-} from "./components";
+import { ChangePassword, Navbar, NavbarHorizontal } from "./components";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/authSlice";
+import UpdateOrder from "./pages/UpdateOrder";
+import AdminRoute from "./components/AdminRoute.jsx"; // Import AdminRoute
 
 const fetchUser = async (dispatch) => {
   const token = localStorage.getItem("token");
@@ -27,6 +25,7 @@ const fetchUser = async (dispatch) => {
         withCredentials: true,
       }
     );
+    console.log("Full user response:", response.data); // ✅ Debugging log
 
     // console.log("User fetched:", response.data);
     dispatch(setUser(response.data.message));
@@ -68,7 +67,12 @@ const App = () => {
               element={<Profile fetchUser={fetchUser} />}
             ></Route>
             <Route path="/changePassword" element={<ChangePassword />}></Route>
-            <Route path="/order" element={<Order/>}></Route>
+            <Route path="/order" element={<Order />}></Route>
+
+            <Route
+              path="/order/admin"
+              element={<AdminRoute element={<UpdateOrder />} />}
+            />
           </Routes>
         </div>
       </div>

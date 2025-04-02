@@ -1,16 +1,10 @@
 import mongoose from "mongoose";
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2"
 
-const ORDER_STATUSES = ["pending", "preparing", "completed", "cancelled"];
+const ORDER_STATUSES = ["Pending", "Ready", "Completed", "Cancelled"];
 
 const orderSchema = new mongoose.Schema(
   {
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-      index: true,
-    },
     items: [
       {
         menuId: {
@@ -37,11 +31,15 @@ const orderSchema = new mongoose.Schema(
     orderStatus: {
       type: String,
       enum: ORDER_STATUSES,
-      default: "pending",
+      default: "Pending",
     },
     owner:{
       type: mongoose.Schema.Types.ObjectId,
       ref: "User"
+    },
+    table : {
+      type: Number,
+      required: true
     }
   },
   { timestamps: true }

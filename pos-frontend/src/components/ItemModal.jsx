@@ -105,26 +105,26 @@ const ItemModal = ({ isOpen, onClose, data, onSave }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="absolute right-0 top-0 w-full h-fit flex items-center justify-end bg-black bg-opacity-40 overflow-y-auto">
+    <div className="absolute right-0 top-0 w-full h-fit flex items-center justify-end bg-black bg-opacity-40 overflow-y-auto z-50">
 
-      <div className=" h-full w-fit py-6 rounded-lg bg-custom-bg-2">
-        <div className="flex justify-between w-full items-center mb-6 px-10 pb-8 pt-4 border-b-2">
+      <div className="h-full w-full flex flex-col items-center justify-center sm:block sm:w-fit py-6 sm:rounded-lg bg-custom-bg-2">
+        <div className="flex justify-between w-full items-center mb-6 px-20 sm:px-10 pb-8 pt-4 border-b-2">
           {" "}
-          <h2 className="text-2xl ">
+          <h2 className="sm:text-2xl text-lg">
             {isEditMode ? "Update Item" : "Add New Item"}
           </h2>
           <div
             onClick={onClose}
-            className="cursor-pointer p-1 rounded-full bg-custom-input-bg"
+            className="cursor-pointer p-3/4 sm:p-1 rounded-full bg-custom-input-bg"
           >
-            <img src={closeArrowIcon} alt="" />
+            <img className="scale-90 sm:scale-100" src={closeArrowIcon} alt="" />
           </div>
         </div>
         <div className="h-fit w-fit flex flex-col items-center mx-10 gap-2">
-          <div className="bg-custom-input-bg w-[200px] h-[200px] overflow-hidden rounded-xl">
+          <div className="bg-custom-input-bg w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] overflow-hidden rounded-xl">
             {previewImage ? (
               <img
-                className="h-[200px] w-[200px] object-cover"
+                className="sm:h-[200px] sm:w-[200px] object-cover"
                 src={previewImage}
                 alt="Preview"
               />
@@ -256,7 +256,7 @@ const ItemModal = ({ isOpen, onClose, data, onSave }) => {
             required
           />
         </div>
-        <div className="flex justify-end space-x-2 mt-12 mr-12">
+        <div className="flex sm:flex-row flex-col justify-end space-x-2 mt-12 sm:mr-12">
           <button
             onClick={onClose}
             className="px-8 py-4 underline underline-offset-1 text-sm"

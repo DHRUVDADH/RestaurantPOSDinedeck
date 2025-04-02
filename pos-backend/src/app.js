@@ -19,10 +19,12 @@ app.use(cookieParser());
 import userRouter from "./routes/user.routes.js";
 import categoryRouter from "./routes/category.routes.js";
 import menuItemRouter from "./routes/menuItem.routes.js";
+import orderRouter from "./routes/order.routes.js"
 
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/categories", categoryRouter);
 app.use("/api/v1/menu", menuItemRouter);
+app.use("/api/v1/order", orderRouter);
 
 
 export { app };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ItemModal , CategoryModal } from "../components/index.js";
+import { toast } from "react-toastify";
+import { ItemModal, CategoryModal } from "../components/index.js";
 import menu_all from "../assets/menu_all.svg";
 import menu_pizza from "../assets/menu_pizza.svg";
 import menu_burger from "../assets/menu_burger.svg";
@@ -28,8 +29,6 @@ const Menu = () => {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem("token");
-
-      
 
       const categoriesRes = await axios.get(
         "http://localhost:8000/api/v1/categories?limit=50",
@@ -86,16 +85,19 @@ const Menu = () => {
   };
 
   const filteredMenuItems = menuItems.filter((item) => {
-    if (isSelectedMenu === "specialDeals") return item.dealType === "Special Deals";
-    if (isSelectedMenu === "newYearDeals") return item.dealType === "New Year Deals";
-    return isSelected ? item.itemCategory.toString() === isSelected.toString() : true;
+    if (isSelectedMenu === "specialDeals")
+      return item.dealType === "Special Deals";
+    if (isSelectedMenu === "newYearDeals")
+      return item.dealType === "New Year Deals";
+    return isSelected
+      ? item.itemCategory.toString() === isSelected.toString()
+      : true;
   });
-
 
   const handleDelete = async (itemId) => {
     try {
       const token = localStorage.getItem("token");
-  
+
       const deleteRes = await axios.delete(
         `http://localhost:8000/api/v1/menu/delete-item/${itemId}`,
         {
@@ -103,21 +105,23 @@ const Menu = () => {
         }
       );
 
-
-      toast.success("Item Deleted Successfully")
-      console.log(deleteRes.data.message); // Log response (optional)
-      fetchData(); // Refresh menu list after deletion
+        
+      setMenuItems((prevMenuItems) =>
+        prevMenuItems.filter((item) => item._id !== itemId)
+      );
     } catch (error) {
-      toast.error("Error deleting Item")
+      toast.error("Error deleting Item");
       console.error("Error deleting item:", error);
     }
   };
-  
-  
 
   return (
     <section className="h-fit w-full flex flex-col gap-10 mt-5">
-      <div className="h-fit w-full flex flex-col gap-10 px-12">
+      <div
+        className={`h-fit w-full flex flex-col gap-10 px-12 ${
+          isMenuItemModalOpen || isCategoryModalOpen ? "hidden sm:flex" : "flex"
+        }`}
+      >
         <div className="h-fit w-full flex-wrap flex justify-center sm:justify-between items-center gap-4">
           <div className="text-2xl ">Categories</div>
           <button
@@ -198,7 +202,13 @@ const Menu = () => {
         </div>
       </div>
 
-      <div>
+      <div
+        className={`${
+          isMenuItemModalOpen || isCategoryModalOpen
+            ? "hidden sm:block"
+            : "block"
+        }`}
+      >
         <div className="text-2xl w-full text-center px-0 sm:w-fit sm:px-12 mb-10">
           Special menu all items
         </div>
@@ -339,17 +349,16 @@ const Menu = () => {
                   >
                     <img src={editIcon} alt="" />
                   </button>
-                  <button onClick={()=>handleDelete(item._id)}>
+                  <button onClick={() => handleDelete(item._id)}>
                     <img src={deleteIcon} alt="" />
                   </button>
                   <button
-                    onClick={() => handleToggle(item._id)}
+                    onClick={() => handleToggle(item.id)}
                     className="text-xs bg-custom-pink text-black px-2 py-1 rounded-md block sm:hidden"
                   >
                     {checkedItems[item.id]
                       ? "Remove this item"
                       : "Add this item"}
-                    asdfasdas
                   </button>
                 </div>
               </div>

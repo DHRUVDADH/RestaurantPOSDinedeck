@@ -44,7 +44,7 @@ const Navbar = () => {
             { name: "Staff", path: "/asd" },
             { name: "Inventory", path: "/dasdesc" },
             { name: "Reports", path: "/sdad" },
-            { name: "Order/Table", path: "/dedsdsdsc" },
+            { name: "Order/Table", path: "/order" },
             { name: "Reservation", path: "/desdsc" },
           ].map((item, index) => (
             <>

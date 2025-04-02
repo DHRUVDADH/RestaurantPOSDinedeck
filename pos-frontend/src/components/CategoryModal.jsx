@@ -61,19 +61,23 @@ const CategoryModal = ({ isOpen, onClose, onSave }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="absolute right-0 top-0 w-full h-screen flex items-center justify-end bg-black bg-opacity-40 overflow-y-auto">
-      <div className="h-full w-fit py-6 rounded-lg bg-custom-bg-2">
-        <div className="flex justify-between w-full items-center mb-6 px-10 pb-8 pt-4 border-b-2">
-          <h2 className="text-2xl">Create New Category</h2>
+    <div className="absolute right-0 top-0 w-screen sm:w-full sm:h-screen flex items-center sm:justify-end justify-center  bg-black bg-opacity-40 overflow-y-auto z-50">
+      <div className="h-full w-full flex flex-col items-center justify-center sm:block sm:w-fit py-6 sm:rounded-lg bg-custom-bg-2">
+        <div className="flex justify-between w-full items-center px-16 mb-6 sm:px-10 pb-8 pt-4 border-b-2">
+          <h2 className="text-lg sm:text-2xl">Create New Category</h2>
           <div
             onClick={onClose}
-            className="cursor-pointer p-1 rounded-full bg-custom-input-bg"
+            className="cursor-pointer p-3/4 sm:p-1 rounded-full bg-custom-input-bg"
           >
-            <img src={closeArrowIcon} alt="" />
+            <img
+              className="scale-90 sm:scale-100"
+              src={closeArrowIcon}
+              alt=""
+            />
           </div>
         </div>
 
-        <div className="flex">
+        <div className="flex flex-col justify-center items-center sm:flex-row px-10 sm:px-0 gap-5">
           {[
             {
               id: "imagefile1",
@@ -92,7 +96,7 @@ const CategoryModal = ({ isOpen, onClose, onSave }) => {
               key={index}
               className="h-fit w-fit flex flex-col items-center mx-10 gap-2"
             >
-              <div className="bg-custom-input-bg w-[200px] h-[200px] overflow-hidden rounded-xl">
+              <div className="bg-custom-input-bg w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] overflow-hidden rounded-xl">
                 {img.image ? (
                   <img
                     className="h-[200px] w-[200px] object-cover"
@@ -138,7 +142,7 @@ const CategoryModal = ({ isOpen, onClose, onSave }) => {
           />
         </div>
 
-        <div className="sm:w-[450px] w-[280px] mx-10 mt-12 flex flex-col items-start">
+        <div className="sm:w-[450px] w-[280px] sm:mx-10 mt-12 flex flex-col items-start">
           <label className="text-[11px] ml-1" htmlFor="description">
             Category Description
           </label>
@@ -153,9 +157,7 @@ const CategoryModal = ({ isOpen, onClose, onSave }) => {
           />
         </div>
 
-        
-
-        <div className="flex justify-end space-x-2 mt-12 mr-12">
+        <div className=" flex sm:flex-row flex-col justify-end space-x-2 mt-12 sm:mr-12">
           <button
             onClick={onClose}
             className="px-8 py-4 underline underline-offset-1 text-sm"

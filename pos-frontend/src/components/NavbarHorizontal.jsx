@@ -105,7 +105,7 @@ const NavbarHorizontal = () => {
               {/* Menu Items */}
               <div className="flex flex-col gap-3 pt-4">
                 <Link to="/user" onClick={() => setIsVisible(false)} className="flex justify-start items-center pl-6 gap-2">
-                  <img src={profileIcon} alt="Profile" />
+                  <img className="bg-transparent" src={profileIcon} alt="Profile" />
                   <div className="text-sm">Profile</div>
                 </Link>
 

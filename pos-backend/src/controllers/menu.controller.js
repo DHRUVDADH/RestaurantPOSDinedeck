@@ -137,7 +137,7 @@ const updateItem = asyncHandler(async (req, res) => {
     stock === undefined ||
     itemAvailability === undefined
   ) {
-    return res.status(400).json({ message: "All fields are required" });
+    throw new ApiError(401, "All Fields are required")
   }
 
   const itemUpdated = await Menu.findByIdAndUpdate(
@@ -270,13 +270,12 @@ const deleteItem = asyncHandler(async (req, res) => {
     } catch (error) {
       console.error("Error deleting old files:", error);
     }
-
-    await Menu.findByIdAndDelete(itemId)
+    await Menu.findByIdAndDelete(itemId);
 
     return res
-    .status(200)
-    .json(new ApiResponse(200 , {} , "MenuItem Deleted Successfully"))
+      .status(200)
+      .json(new ApiResponse(200, {}, "MenuItem Deleted Successfully"));
   }
 });
 
-export { createItem, getAllItems, updateItem, updateItemImage , deleteItem };
+export { createItem, getAllItems, updateItem, updateItemImage, deleteItem };
