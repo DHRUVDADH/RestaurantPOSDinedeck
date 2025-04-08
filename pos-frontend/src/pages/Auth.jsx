@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import paswordClose from "../assets/password_close.svg";
 import paswordOpen from "../assets/password_open.svg";
-import axios from "axios";
+import axios from "axios";  
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
@@ -34,6 +34,7 @@ const Auth = ({ fetchUser }) => {
       );
       toast.success("Signup successful! Please log in.");
       setIsSignUp(false);
+      
     } catch (error) {
       console.error(
         "Signup failed:",
@@ -201,7 +202,7 @@ const Auth = ({ fetchUser }) => {
             <label className="text-[11px] ml-1" htmlFor="password">
               Password
             </label>
-            <div className="relative w-full">
+            <div className="relative w-full"  >
               <input
                 className="bg-custom-input-bg rounded-md w-full px-2 py-2 mt-1"
                 type={isEyeOpen ? "text" : "password"}

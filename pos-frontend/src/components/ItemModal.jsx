@@ -106,7 +106,6 @@ const ItemModal = ({ isOpen, onClose, data, onSave }) => {
 
   return (
     <div className="absolute right-0 top-0 w-full h-fit flex items-center justify-end bg-black bg-opacity-40 overflow-y-auto z-50">
-
       <div className="h-full w-full flex flex-col items-center justify-center sm:block sm:w-fit py-6 sm:rounded-lg bg-custom-bg-2">
         <div className="flex justify-between w-full items-center mb-6 px-20 sm:px-10 pb-8 pt-4 border-b-2">
           {" "}
@@ -117,7 +116,11 @@ const ItemModal = ({ isOpen, onClose, data, onSave }) => {
             onClick={onClose}
             className="cursor-pointer p-3/4 sm:p-1 rounded-full bg-custom-input-bg"
           >
-            <img className="scale-90 sm:scale-100" src={closeArrowIcon} alt="" />
+            <img
+              className="scale-90 sm:scale-100"
+              src={closeArrowIcon}
+              alt=""
+            />
           </div>
         </div>
         <div className="h-fit w-fit flex flex-col items-center mx-10 gap-2">
